@@ -2,13 +2,13 @@ name: "Daily Fudan"
 
 on:
   schedule: # scheduled at (UTC+8) everyday
-    - cron: "23 20 * * *"
-    - cron: "24 6 * * *"
+    - cron: "42 22 * * *"
+    - cron: "58 8 * * *"
   workflow_dispatch:
 
 env:
   # auto merge from y1ndan/genshin-impact-helper, default: false
-  ALLOW_MERGE: 'true'
+  ALLOW_MERGE: 'false'
   RUN_ENV: 'prod'
   TZ: 'Asia/Shanghai'
   FUCK_GH_PAT: ${{ secrets.GH_PAT }}
@@ -48,10 +48,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-
-      - name: Random sleep
-        if: github.event_name == 'schedule'
-        run: sleep $(shuf -i 10-300 -n 1)
 
       - name: Random_schedule
         if: ${{ env.FUCK_GH_PAT }}
